@@ -2,8 +2,8 @@ import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState } from "react";
 
 const ModalEditPatient = (props) => {
-  console.log(props);
   const token = localStorage.getItem("token");
+  const tokenAdmin = localStorage.getItem("tokenAdmin");
   const [email, setEmail] = useState(props.modal.patient.email);
   const [motifPriseEnCharge, setMotifPriseEnCharge] = useState(
     props.modal.patient.motifPriseEnCharge
@@ -17,6 +17,17 @@ const ModalEditPatient = (props) => {
   const [nom, setNom] = useState(props.modal.patient.nom);
   const [prenom, setPrenom] = useState(props.modal.patient.prenom);
   const [tel, setTel] = useState(props.modal.patient.tel);
+  let url;
+  let tokenAdminOrPatient;
+
+  if (token) {
+    url = "http://localhost:8080/editPatient/";
+    tokenAdminOrPatient = token;
+  }
+  if (tokenAdmin) {
+    url = "http://localhost:8080/admin/editPatient/";
+    tokenAdminOrPatient = tokenAdmin;
+  }
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -24,26 +35,23 @@ const ModalEditPatient = (props) => {
 
     const fetchEdit = async () => {
       try {
-        const response = await fetch(
-          "http://localhost:8080/editPatient/" + props.modal.patient._id,
-          {
-            method: "put",
-            body: JSON.stringify({
-              nom: nom,
-              prenom: prenom,
-              email: email,
-              adresse: adresse,
-              codePostal: codePostal,
-              ville: ville,
-              tel: tel,
-              motifPriseEnCharge: motifPriseEnCharge,
-            }),
-            headers: {
-              Authorization: "Bearer " + token,
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const response = await fetch(url + props.modal.patient._id, {
+          method: "put",
+          body: JSON.stringify({
+            nom: nom,
+            prenom: prenom,
+            email: email,
+            adresse: adresse,
+            codePostal: codePostal,
+            ville: ville,
+            tel: tel,
+            motifPriseEnCharge: motifPriseEnCharge,
+          }),
+          headers: {
+            Authorization: "Bearer " + tokenAdminOrPatient,
+            "Content-Type": "application/json",
+          },
+        });
 
         if (response.ok) {
           const result = await response.json();
@@ -57,6 +65,7 @@ const ModalEditPatient = (props) => {
     console.log("ok");
     fetchEdit();
   };
+  console.log(token, tokenAdmin);
   return (
     <>
       <>
@@ -111,42 +120,6 @@ const ModalEditPatient = (props) => {
                             className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                             required
                           />
-                        </div>
-                        <div className="grid grid-cols-2 space-x-4">
-                          <div className="">
-                            <label
-                              for="nom"
-                              className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-                            >
-                              Nom de famille
-                            </label>
-                            <input
-                              type="text"
-                              value={nom}
-                              onChange={(e) => {
-                                setNom(e.target.value);
-                              }}
-                              className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
-                              required=""
-                            />
-                          </div>
-                          <div className="">
-                            <label
-                              for="prenom"
-                              className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-                            >
-                              Prenom
-                            </label>
-                            <input
-                              type="text"
-                              value={prenom}
-                              onChange={(e) => {
-                                setPrenom(e.target.value);
-                              }}
-                              className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
-                              required
-                            />
-                          </div>
                         </div>
 
                         <div className="grid grid-cols-2 space-x-4">
@@ -249,7 +222,7 @@ const ModalEditPatient = (props) => {
                           type="submit"
                           className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
                         >
-                          Sign in
+                          Valider
                         </button>
                       </form>
                     </div>

@@ -1,16 +1,14 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-const AdminLoginForm = () => {
+const PatientLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
-    const adminLoginFetch = async () => {
+    const patientlogin = async () => {
       try {
-        const response = await fetch("http://localhost:8080/admin/adminlogin", {
+        const response = await fetch("http://localhost:8080/patient/login", {
           method: "POST",
           body: JSON.stringify({
             email: email,
@@ -23,28 +21,29 @@ const AdminLoginForm = () => {
 
         if (response.ok) {
           const result = await response.json();
-          localStorage.setItem("tokenAdmin", result.tokenAdmin);
+          localStorage.setItem("token", result.token);
           localStorage.setItem("userId", result.userId);
           const remainingMilliseconds = 60 * 60 * 5000; // 5 heures
           const expiryDate = new Date(
             new Date().getTime() + remainingMilliseconds
           );
           localStorage.setItem("expiryDate", expiryDate.toISOString());
-          //on remout le component pour
-          navigate(0);
+          // history.push("/clients"); TO DO
         }
       } catch (err) {
         console.log("erreur enregistrement");
       }
     };
-    adminLoginFetch();
+    patientlogin();
   };
 
   return (
     <>
       <div className="flex h-screen items-center justify-center">
         <div className="w-5/12 border rounded-lg shadow-lg p-20">
-          <p className="text-3xl text-center font-bold ">Admin Login</p>
+          <p className="text-3xl text-center font-bold ">
+            Connexion à mon espace{" "}
+          </p>
 
           <div>
             <form className="space-y-6 mt-8" onSubmit={formSubmitHandler}>
@@ -72,7 +71,7 @@ const AdminLoginForm = () => {
                   for="email"
                   className="mb-4 text-md font-bold text-gray-900 dark:text-white"
                 >
-                  Mot de passe
+                  Code d'accès
                 </label>
                 <input
                   type="password"
@@ -100,4 +99,4 @@ const AdminLoginForm = () => {
   );
 };
 
-export default AdminLoginForm;
+export default PatientLoginForm;

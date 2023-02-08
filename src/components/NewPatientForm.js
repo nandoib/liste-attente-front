@@ -241,15 +241,6 @@ const NewPatientForm = () => {
               >
                 Sign in
               </button>
-              <p className="text-sm font-light text-gray-500">
-                Don’t have an account yet?{" "}
-                <a
-                  href="#"
-                  className="font-medium text-blue-600 hover:underline"
-                >
-                  Sign up
-                </a>
-              </p>
             </form>
           </div>
         </div>
