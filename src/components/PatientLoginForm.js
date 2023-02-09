@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PatientLoginForm = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -28,7 +31,11 @@ const PatientLoginForm = () => {
             new Date().getTime() + remainingMilliseconds
           );
           localStorage.setItem("expiryDate", expiryDate.toISOString());
-          // history.push("/clients"); TO DO
+          navigate(0);
+        }
+        if (!response.ok) {
+          const result = await response.json();
+          setError(result.message);
         }
       } catch (err) {
         console.log("erreur enregistrement");
@@ -92,6 +99,14 @@ const PatientLoginForm = () => {
                 Enregistrer
               </button>
             </form>
+            {error && (
+              <div
+                class="bg-red-100 rounded-lg py-2 px-6 mb-4 m-2 text-center text-base text-red-700 "
+                role="alert"
+              >
+                {error}
+              </div>
+            )}
           </div>
         </div>
       </div>

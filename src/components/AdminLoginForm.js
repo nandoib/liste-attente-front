@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 const AdminLoginForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   const formSubmitHandler = (e) => {
@@ -32,6 +33,10 @@ const AdminLoginForm = () => {
           localStorage.setItem("expiryDate", expiryDate.toISOString());
           //on remout le component pour
           navigate(0);
+        }
+        if (!response.ok) {
+          const result = await response.json();
+          setError(result.message);
         }
       } catch (err) {
         console.log("erreur enregistrement");
@@ -93,6 +98,14 @@ const AdminLoginForm = () => {
                 Enregistrer
               </button>
             </form>
+            {error && (
+              <div
+                class="bg-red-100 rounded-lg py-5 px-6 mb-4 m-4  text-center text-base text-red-700 "
+                role="alert"
+              >
+                {error}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -10,6 +10,7 @@ const NewPatientForm = () => {
   const [nom, setNom] = useState("");
   const [prenom, setPrenom] = useState("");
   const [tel, setTel] = useState("");
+  const [error, setError] = useState(false);
 
   const formSubmitHandler = (e) => {
     e.preventDefault();
@@ -35,15 +36,18 @@ const NewPatientForm = () => {
         });
 
         if (response.ok) {
+          const result = await response.json();
+          console.log(result);
+          setError(
+            "Demande enregistrée, un mail a été envoyé a l'adresse mail communiquée"
+          );
         }
-        const result = await response.json();
-
-        if (result.message === "patient enregistré") {
+        if (!response.ok) {
+          const err = await response.json();
+          throw Error(err.message);
         }
-
-        console.log("patient enregistré");
       } catch (err) {
-        console.log("erreur enregistrement");
+        setError(err.message);
       }
     };
     newPatientFetch();
@@ -74,7 +78,7 @@ const NewPatientForm = () => {
                   }}
                   className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                   placeholder="Exemple@exemple.fr"
-                  required=""
+                  required
                 />
               </div>
               <div className="grid grid-cols-2 space-x-4">
@@ -86,6 +90,7 @@ const NewPatientForm = () => {
                     Nom de famille
                   </label>
                   <input
+                    minlength="3"
                     type="text"
                     value={nom}
                     onChange={(e) => {
@@ -93,7 +98,7 @@ const NewPatientForm = () => {
                     }}
                     className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                     placeholder="Dupond"
-                    required=""
+                    required
                   />
                 </div>
                 <div className="">
@@ -105,6 +110,7 @@ const NewPatientForm = () => {
                   </label>
                   <input
                     type="text"
+                    minlength="3"
                     value={prenom}
                     onChange={(e) => {
                       setPrenom(e.target.value);
@@ -126,12 +132,13 @@ const NewPatientForm = () => {
                   </label>
                   <input
                     type="tel"
+                    minlength="9"
                     value={tel}
                     onChange={(e) => {
                       setTel(e.target.value);
                     }}
                     className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
-                    placeholder="06.00.00.00.00"
+                    placeholder="0610203040"
                     required
                   />
                 </div>
@@ -167,6 +174,7 @@ const NewPatientForm = () => {
                   N° et rue
                 </label>
                 <input
+                  minlength="6"
                   type="text"
                   value={adresse}
                   onChange={(e) => {
@@ -174,7 +182,7 @@ const NewPatientForm = () => {
                   }}
                   className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                   placeholder="1 rue des moulins"
-                  required=""
+                  required
                 />
               </div>
 
@@ -187,6 +195,8 @@ const NewPatientForm = () => {
                     Code Postal
                   </label>
                   <input
+                    minlength="5"
+                    maxLength="5"
                     type="text"
                     value={codePostal}
                     onChange={(e) => {
@@ -194,31 +204,32 @@ const NewPatientForm = () => {
                     }}
                     className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                     placeholder="57000"
-                    required=""
+                    required
                   />
                 </div>
                 <div className="">
                   <label
-                    for="Rue"
+                    for="ville"
                     className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
                   >
                     Ville
                   </label>
                   <input
                     type="text"
+                    minlength="3"
                     value={ville}
                     onChange={(e) => {
                       setVille(e.target.value);
                     }}
                     className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                     placeholder="1 rue des moulins"
-                    required=""
+                    required
                   />
                 </div>
               </div>
               <div className="">
                 <label
-                  for="Rue"
+                  for="Motif"
                   className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
                 >
                   Motif de la prise en charge
@@ -231,7 +242,7 @@ const NewPatientForm = () => {
                   }}
                   className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
                   placeholder="Orthophonie"
-                  required=""
+                  required
                 />
               </div>
 
@@ -239,8 +250,16 @@ const NewPatientForm = () => {
                 type="submit"
                 className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
               >
-                Sign in
+                Valider
               </button>
+              {error && (
+                <div
+                  class="bg-red-100 rounded-lg py-5 px-6 mb-4 m-2 text-center text-base text-red-700 "
+                  role="alert"
+                >
+                  {error}
+                </div>
+              )}
             </form>
           </div>
         </div>
