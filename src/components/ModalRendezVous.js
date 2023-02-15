@@ -1,43 +1,51 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 
-const ModalNewRdv = (props) => {
+const ModalRendezVous = (props) => {
   const tokenAdmin = localStorage.getItem("tokenAdmin");
-  const [date, setDate] = useState("");
+  const [rendezVous, setRendezVous] = useState([]);
+  const dateNow = new Date();
 
-  const formSubmitHandler = (e) => {
-    e.preventDefault();
-    console.log("form submitted");
+  const returnDateLocal = (date) => {
+    const dateFr = new Date(date);
+    return (
+      dateFr.toLocaleDateString(undefined, {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }) +
+      " à " +
+      dateFr.toLocaleTimeString("fr-FR")
+    );
+  };
 
-    const fetchEdit = async () => {
-      try {
-        const response = await fetch(
-          "http://localhost:8080/admin/addRendezVous/" +
-            props.modalRdv.patient._id,
-          {
-            method: "post",
-            body: JSON.stringify({
-              date: date,
-            }),
-            headers: {
-              Authorization: "Bearer " + tokenAdmin,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (response.ok) {
-          const result = await response.json();
-          props.updatePatient(result.patient);
-          props.closeModalRdv();
+  useEffect(() => {
+    const fetchRendezVous = async () => {
+      const response = await fetch(
+        "http://localhost:8080/admin/allRendezVous/" +
+          props.modalRdv.patient._id,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + tokenAdmin,
+          },
         }
-      } catch (err) {
-        console.log(err);
+      );
+      if (response.ok) {
+        const result = await response.json();
+        result.rendezVous.map((rdv) => {
+          const dateRdv = new Date(rdv);
+          if (dateRdv > dateNow) {
+            setRendezVous((prevState) => [...prevState, rdv]);
+          }
+        });
       }
     };
-    console.log("ok");
-    fetchEdit();
-  };
+    fetchRendezVous();
+  }, []);
+
+  console.log(rendezVous);
 
   return (
     <>
@@ -46,7 +54,7 @@ const ModalNewRdv = (props) => {
           <Dialog
             as="div"
             className="relative z-10"
-            onClose={props.closeModalRdv}
+            onClose={props.closeModalPatientRdv}
           >
             <Transition.Child
               as={Fragment}
@@ -80,39 +88,30 @@ const ModalNewRdv = (props) => {
                       {props.modalRdv.patient.prenom}
                     </Dialog.Title>
                     <div className="mt-2">
-                      <form className="space-y-6" onSubmit={formSubmitHandler}>
-                        <div>
-                          <label
-                            for="email"
-                            className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-                          >
-                            Date du RDV
-                          </label>
-                          <input
-                            type="datetime-local"
-                            value={date}
-                            onChange={(e) => {
-                              setDate(e.target.value);
-                            }}
-                            className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
-                            required
-                          />
-                        </div>
-
-                        <button
-                          type="submit"
-                          className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
-                        >
-                          Valider
-                        </button>
-                      </form>
+                      <table class="table p-4 bg-white rounded-lg shadow border m-5">
+                        <thead>
+                          <tr>
+                            <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
+                              date
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {rendezVous.map((rdv) => (
+                            <tr>
+                              <td class="border-b-2 p-4 dark:border-dark-5">
+                                {returnDateLocal(rdv)}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
-
                     <div className="mt-4">
                       <button
                         type="button"
                         className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                        onClick={props.closeModalRdv}
+                        onClick={props.closeModalPatientRdv}
                       >
                         Annuler
                       </button>
@@ -128,4 +127,4 @@ const ModalNewRdv = (props) => {
   );
 };
 
-export default ModalNewRdv;
+export default ModalRendezVous;

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bgImage from "../images/bg.png";
 
-const PatientLoginForm = () => {
+const PatientLoginForm = (props) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -46,8 +47,11 @@ const PatientLoginForm = () => {
 
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
-        <div className="w-5/12 border rounded-lg shadow-lg p-20">
+      <div
+        className=" md:flex md:flex-wrap  md:items-center md:justify-center  md:h-screen md:py-0 "
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <div className="w-full p-10 md:w-5/12 border bg-white md:rounded-lg shadow-lg md:p-20">
           <p className="text-3xl text-center font-bold ">
             Connexion à mon espace{" "}
           </p>
@@ -94,11 +98,25 @@ const PatientLoginForm = () => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
+                className="w-full text-white bg-blue-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
               >
                 Enregistrer
               </button>
             </form>
+
+            <p className="mt-5 font-bold text-xl text-center">
+              Je veux m'inscrire à la liste d'attente :
+            </p>
+            <div className="grid justify-items-center">
+              <button
+                onClick={(e) => {
+                  props.changeLogShow();
+                }}
+                className="bg-blue-700 text-white rounded-lg text-sm font-medium px-5 py-2.5  m-2 "
+              >
+                Inscription
+              </button>
+            </div>
             {error && (
               <div
                 class="bg-red-100 rounded-lg py-2 px-6 mb-4 m-2 text-center text-base text-red-700 "

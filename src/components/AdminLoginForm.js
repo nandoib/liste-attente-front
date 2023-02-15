@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import bgImage from "../images/bg.png";
 
 const AdminLoginForm = () => {
   const [email, setEmail] = useState("");
@@ -47,8 +48,11 @@ const AdminLoginForm = () => {
 
   return (
     <>
-      <div className="flex h-screen items-center justify-center">
-        <div className="w-5/12 border rounded-lg shadow-lg p-20">
+      <div
+        className="md:flex md:flex-wrap  md:items-center md:justify-center  md:h-screen md:py-0"
+        style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <div className="w-full md:w-5/12 md:border bg-white md:rounded-lg md:shadow-lg p-20">
           <p className="text-3xl text-center font-bold ">Admin Login</p>
 
           <div>

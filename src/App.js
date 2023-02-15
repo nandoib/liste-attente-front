@@ -7,6 +7,7 @@ import PatientLoginForm from "./components/PatientLoginForm";
 import PatientPage from "./components/PatientPage";
 import { Routes, Redirect, Route } from "react-router-dom";
 import Home from "./components/Home";
+import PecForm from "./components/PecForm";
 
 function App() {
   const [isAuth, setIsAuth] = useState({ logged: false, role: "" });
@@ -56,6 +57,14 @@ function App() {
             ) : (
               <AdminLoginForm />
             )
+          }
+        />
+
+        <Route
+          path="/questionnaire"
+          exact
+          element={
+            isAuth.logged && isAuth.role == "patient" ? <PecForm /> : <Home />
           }
         />
       </Routes>
