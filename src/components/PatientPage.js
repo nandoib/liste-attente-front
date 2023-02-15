@@ -14,7 +14,7 @@ const PatientPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        "http://localhost:8080/getPatient/" + userId,
+        "https://liste-attente-back.vercel.app/getPatient/" + userId,
         {
           headers: {
             "Content-Type": "application/json",
@@ -37,7 +37,7 @@ const PatientPage = () => {
   const patientValidate = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/validerMail/" + patient._id,
+        "https://liste-attente-back.vercel.app/validerMail/" + patient._id,
         {
           method: "post",
           headers: {
@@ -62,7 +62,7 @@ const PatientPage = () => {
   const deletePatient = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8080/deletePatient/" + userId,
+        "https://liste-attente-back.vercel.app/deletePatient/" + userId,
         {
           method: "delete",
           headers: {

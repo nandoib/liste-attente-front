@@ -12,16 +12,19 @@ const AdminLoginForm = () => {
     e.preventDefault();
     const adminLoginFetch = async () => {
       try {
-        const response = await fetch("http://localhost:8080/admin/adminlogin", {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://liste-attente-back.vercel.app/admin/adminlogin",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           const result = await response.json();

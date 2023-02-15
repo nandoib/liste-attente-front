@@ -11,18 +11,21 @@ const NewAdmin = () => {
 
     const newAdminFetch = async () => {
       try {
-        const response = await fetch("http://localhost:8080/admin/newAdmin", {
-          method: "POST",
-          body: JSON.stringify({
-            nom: nom,
-            prenom: prenom,
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://liste-attente-back.vercel.app/admin/newAdmin",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              nom: nom,
+              prenom: prenom,
+              email: email,
+              password: password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
         }

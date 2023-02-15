@@ -18,23 +18,26 @@ const NewPatientForm = (props) => {
 
     const newPatientFetch = async () => {
       try {
-        const response = await fetch("http://localhost:8080/newPatient", {
-          method: "POST",
-          body: JSON.stringify({
-            nom: nom,
-            prenom: prenom,
-            adresse: adresse,
-            codePostal: codePostal,
-            ville: ville,
-            tel: tel,
-            dateNaissance: dateNaissance,
-            motifPriseEnCharge: motifPriseEnCharge,
-            email: email,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://liste-attente-back.vercel.app/newPatient",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              nom: nom,
+              prenom: prenom,
+              adresse: adresse,
+              codePostal: codePostal,
+              ville: ville,
+              tel: tel,
+              dateNaissance: dateNaissance,
+              motifPriseEnCharge: motifPriseEnCharge,
+              email: email,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           const result = await response.json();

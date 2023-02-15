@@ -38,7 +38,7 @@ const AdminPage = () => {
     const fetchPatients = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/admin/allPatients",
+          "https://liste-attente-back.vercel.app/admin/allPatients",
           {
             headers: {
               Authorization: "Bearer " + tokenAdmin,
@@ -69,7 +69,8 @@ const AdminPage = () => {
   const supprimerPatient = async (patient) => {
     try {
       const response = await fetch(
-        "http://localhost:8080/admin/deletePatient/" + patient._id,
+        "https://liste-attente-back.vercel.app/admin/deletePatient/" +
+          patient._id,
         {
           method: "delete",
           headers: {
@@ -89,7 +90,8 @@ const AdminPage = () => {
   const validerPatient = async (patient) => {
     try {
       const response = await fetch(
-        "http://localhost:8080/admin/validatePatient/" + patient._id,
+        "https://liste-attente-back.vercel.app/admin/validatePatient/" +
+          patient._id,
         {
           body: JSON.stringify({ statut: "PEC" }),
           method: "post",

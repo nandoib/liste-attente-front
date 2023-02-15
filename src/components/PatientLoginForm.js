@@ -12,16 +12,19 @@ const PatientLoginForm = (props) => {
     e.preventDefault();
     const patientlogin = async () => {
       try {
-        const response = await fetch("http://localhost:8080/patient/login", {
-          method: "POST",
-          body: JSON.stringify({
-            email: email,
-            password: password,
-          }),
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+        const response = await fetch(
+          "https://liste-attente-back.vercel.app/patient/login",
+          {
+            method: "POST",
+            body: JSON.stringify({
+              email: email,
+              password: password,
+            }),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (response.ok) {
           const result = await response.json();

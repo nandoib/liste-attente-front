@@ -35,7 +35,7 @@ const PecForm = (props) => {
     const fetchPostForm = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/submitForm/" + userId,
+          "https://liste-attente-back.vercel.app/submitForm/" + userId,
           {
             method: "post",
             headers: {

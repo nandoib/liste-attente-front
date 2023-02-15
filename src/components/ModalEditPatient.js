@@ -21,11 +21,11 @@ const ModalEditPatient = (props) => {
   let tokenAdminOrPatient;
 
   if (token) {
-    url = "http://localhost:8080/editPatient/";
+    url = "https://liste-attente-back.vercel.app/editPatient/";
     tokenAdminOrPatient = token;
   }
   if (tokenAdmin) {
-    url = "http://localhost:8080/admin/editPatient/";
+    url = "https://liste-attente-back.vercel.app/admin/editPatient/";
     tokenAdminOrPatient = tokenAdmin;
   }
 

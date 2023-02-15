@@ -12,7 +12,7 @@ const ModalNewRdv = (props) => {
     const fetchEdit = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/admin/addRendezVous/" +
+          "https://liste-attente-back.vercel.app/admin/addRendezVous/" +
             props.modalRdv.patient._id,
           {
             method: "post",

@@ -23,7 +23,7 @@ const ModalRendezVous = (props) => {
   useEffect(() => {
     const fetchRendezVous = async () => {
       const response = await fetch(
-        "http://localhost:8080/admin/allRendezVous/" +
+        "https://liste-attente-back.vercel.app/admin/allRendezVous/" +
           props.modalRdv.patient._id,
         {
           headers: {
