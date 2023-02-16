@@ -68,10 +68,7 @@ const NewPatientForm = (props) => {
 
         <form className="space-y-2 md:space-y-6 " onSubmit={formSubmitHandler}>
           <div>
-            <label
-              for="email"
-              className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-            >
+            <label for="email" className="mb-4 text-sm font-bold text-gray-900">
               Votre adresse mail
             </label>
             <input
@@ -87,10 +84,7 @@ const NewPatientForm = (props) => {
           </div>
           <div className="grid grid-cols-2 space-x-4">
             <div className="">
-              <label
-                for="nom"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-              >
+              <label for="nom" className="mb-4 text-sm font-bold text-gray-900">
                 Nom de famille
               </label>
               <input
@@ -108,7 +102,7 @@ const NewPatientForm = (props) => {
             <div className="">
               <label
                 for="prenom"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                className="mb-4 text-sm font-bold text-gray-900 "
               >
                 Prenom
               </label>
@@ -130,7 +124,7 @@ const NewPatientForm = (props) => {
             <div className="">
               <label
                 for="tel"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                className="mb-4 text-sm font-bold text-gray-900 "
               >
                 N° de téléphone
               </label>
@@ -150,7 +144,7 @@ const NewPatientForm = (props) => {
             <div className="">
               <label
                 for="dateNaissance"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                className="mb-4 text-sm font-bold text-gray-900"
               >
                 Date de naissance
               </label>
@@ -166,15 +160,10 @@ const NewPatientForm = (props) => {
               />
             </div>
           </div>
-          <p className=" text-sm font-bold text-gray-900 dark:text-white">
-            Adresse :
-          </p>
+          <p className=" text-sm font-bold text-gray-900 ">Adresse :</p>
 
           <div className="">
-            <label
-              for="Rue"
-              className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-            >
+            <label for="Rue" className="mb-4 text-sm font-bold text-gray-900 ">
               N° et rue
             </label>
             <input
@@ -194,7 +183,7 @@ const NewPatientForm = (props) => {
             <div className="">
               <label
                 for="codePostal"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                className="mb-4 text-sm font-bold text-gray-900 "
               >
                 Code Postal
               </label>
@@ -214,7 +203,7 @@ const NewPatientForm = (props) => {
             <div className="">
               <label
                 for="ville"
-                className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                className="mb-4 text-sm font-bold text-gray-900 "
               >
                 Ville
               </label>
@@ -232,10 +221,7 @@ const NewPatientForm = (props) => {
             </div>
           </div>
           <div className="">
-            <label
-              for="Motif"
-              className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
-            >
+            <label for="Motif" className="mb-4 text-sm font-bold text-gray-900">
               Motif de la prise en charge
             </label>
             <input
