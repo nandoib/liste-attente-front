@@ -12,7 +12,6 @@ const Home = () => {
   };
   return (
     <>
-      <NewAdmin />
       {showLog && (
         <PatientLoginForm
           registerOrLog={showLog}
