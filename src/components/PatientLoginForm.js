@@ -54,17 +54,17 @@ const PatientLoginForm = (props) => {
         className=" md:flex md:flex-wrap  md:items-center md:justify-center  md:h-screen md:py-0 "
         style={{ backgroundImage: `url(${bgImage})` }}
       >
-        <div className="w-full p-10 md:w-5/12 border bg-white md:rounded-lg shadow-lg md:p-20">
-          <p className="text-3xl text-center font-bold ">
+        <div className="w-full p-6 md:w-6/12 border bg-white md:rounded-lg shadow-lg md:p-8">
+          <p className="text-2xl text-center font-bold ">
             Connexion à mon espace{" "}
           </p>
 
           <div>
-            <form className="space-y-6 mt-8" onSubmit={formSubmitHandler}>
+            <form className="space-y-6 mt-6" onSubmit={formSubmitHandler}>
               <div>
                 <label
                   for="email"
-                  className="mb-4 text-md font-bold text-gray-900 dark:text-white"
+                  className="mb-2 text-md font-bold text-gray-900 dark:text-white"
                 >
                   Adresse mail
                 </label>
@@ -74,16 +74,16 @@ const PatientLoginForm = (props) => {
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
-                  className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2.5 "
+                  className="mt-2  bg-gray-50 border border-gray-400 text-gray-900 sm:text-sm rounded-lg focus:border-green-600  w-full p-2 "
                   placeholder="Exemple@exemple.fr"
-                  required=""
+                  required
                 />
               </div>
 
               <div>
                 <label
                   for="email"
-                  className="mb-4 text-md font-bold text-gray-900 dark:text-white"
+                  className="mb-2 text-md font-bold text-gray-900 dark:text-white"
                 >
                   Code d'accès
                 </label>
@@ -101,7 +101,7 @@ const PatientLoginForm = (props) => {
 
               <button
                 type="submit"
-                className="w-full text-white bg-blue-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
+                className="w-full text-white bg-blue-700 hover:bg-white hover:border-2 hover:border-blue-500  focus:ring focus:ring-blue-500 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-blue-500"
               >
                 Enregistrer
               </button>
@@ -115,7 +115,7 @@ const PatientLoginForm = (props) => {
                 onClick={(e) => {
                   props.changeLogShow();
                 }}
-                className="bg-blue-700 text-white rounded-lg text-sm font-medium px-5 py-2.5  m-2 "
+                className="bg-blue-700 text-white rounded-lg text-sm font-medium px-5 py-2.5  m-2  hover:bg-white hover:border-2 hover:border-blue-500  focus:ring focus:ring-blue-500 hover:text-blue-500 "
               >
                 Inscription
               </button>
