@@ -19,7 +19,7 @@ const AdminPage = () => {
   const [waitingListSearch, setWaitingListSearch] = useState("");
   const [patientsListSearch, setPatientsListSearch] = useState("");
 
-  useEffect(async () => {
+  useEffect(() => {
     const fetchPatients = async () => {
       try {
         const response = await fetch(
@@ -36,7 +36,15 @@ const AdminPage = () => {
         }
       } catch (err) {}
     };
-    await fetchPatients();
+
+    const fetchData = async () => {
+      await fetchPatients();
+      // Suite du code qui dépend de la liste des patients mise à jour
+      console.log(patients);
+      // Autres actions à effectuer avec les patients
+    };
+
+    fetchData();
   }, []);
 
   console.log(patients);
