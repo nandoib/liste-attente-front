@@ -83,7 +83,7 @@ const AdminPage = () => {
     indexOfLastItemWaitingList
   );
 
-  console.log(currentItemsWaitingList);
+  const totalPageswaiting = Math.ceil(currentItemsWaitingList / itemsPerPage);
 
   // Calculez l'index de début et de fin des éléments actuels pour la liste des patients
   const indexOfLastItemPatientList = currentPagePatientList * itemsPerPage;
@@ -92,7 +92,8 @@ const AdminPage = () => {
     indexOfFirstItemPatientList,
     indexOfLastItemPatientList
   );
-  console.log(currentItemsPatientList);
+
+  const totalPagesPatients = Math.ceil(currentItemsPatientList / itemsPerPage);
 
   // Changement de page
   const paginate = (pageNumber, waitingListOrPatientList) => {
@@ -476,7 +477,7 @@ const AdminPage = () => {
 
         <div className="flex mx-2">
           <p>
-            Page {currentPagePatientList} / {indexOfLastItemPatientList}
+            Page {currentPagePatientList} / {totalPagesPatients}
           </p>
           {currentPagePatientList > 1 && (
             <button
@@ -487,6 +488,8 @@ const AdminPage = () => {
               Précédent
             </button>
           )}
+          {totalPagesPatients != 1 &&
+            currentPagePatientList < totalPagesPatients}
           <button
             onClick={(e) => {
               setCurrentPagePatientList(currentPagePatientList + 1);
