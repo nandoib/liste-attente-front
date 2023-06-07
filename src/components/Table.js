@@ -65,13 +65,13 @@ const Table = () => {
 
       <div className="flex mx-2">
         {filteredData.map((item, index) => (
-          <li
-            className="p-1 border border-black mx-2"
+          <div
+            className="p-0.5 border border-black mx-0.5"
             key={index}
             onClick={() => paginate(index + 1)}
           >
             {index + 1}
-          </li>
+          </div>
         ))}
       </div>
     </div>

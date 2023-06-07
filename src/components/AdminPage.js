@@ -16,18 +16,68 @@ const AdminPage = () => {
     show: false,
   });
   const [newPatientForm, setNewPatientForm] = useState(false);
+  const [waitingListSearch, setWaitingListSearch] = useState("");
+  const [patientsListSearch, setPatientsListSearch] = useState("");
 
-  const [search, setSearch] = useState({ query: "", found: [] });
+  //Page actuelle pour la liste d'attente
+  const [currentPageWaitingList, setCurrentPageWaitingList] = useState(1);
+  const [currentPagePatientList, setCurrentPagePatientList] = useState(1);
 
-  const handleSearch = (e) => {
-    let newPatient = patients.filter(
-      (patient) =>
-        patient.nom.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        patient.prenom.toLowerCase().includes(e.target.value.toLowerCase()) ||
-        patient.tel.includes(e.target.value)
-    );
-    setSearch({ query: e.target.value, found: newPatient });
+  //Nombre de résultats par page
+  const itemsPerPage = 15;
+
+  // Calculez l'index de début et de fin des éléments actuels pour la liste d'attente
+  const indexOfLastItemWaitingList = currentPageWaitingList * itemsPerPage;
+  const indexOfFirstItemWaitingList = indexOfLastItemWaitingList - itemsPerPage;
+  const currentItemsWaitingList = waitingListSearch.slice(
+    indexOfFirstItemWaitingList,
+    indexOfLastItemWaitingList
+  );
+
+  // Calculez l'index de début et de fin des éléments actuels pour la liste des patients
+  const indexOfLastItemPatientList = currentPagePatientList * itemsPerPage;
+  const indexOfFirstItemPatientList = indexOfLastItemPatientList - itemsPerPage;
+  const currentItemsPatientList = patientsListSearch.slice(
+    indexOfFirstItemPatientList,
+    indexOfLastItemPatientList
+  );
+
+  // Changement de page
+  const paginate = (pageNumber, waitingListOrPatientList) => {
+    if (waitingListOrPatientList === "waitingList") {
+      setCurrentPageWaitingList(pageNumber);
+    }
+    if (waitingListOrPatientList === "patientList") {
+      setCurrentPagePatientList(pageNumber);
+    }
   };
+
+  // Gérer les changements de terme de recherche ()
+  const handleSearch = (string, waitingListOrPatientList) => {
+    if (waitingListOrPatientList === "waitingList") {
+      setCurrentPageWaitingList(1);
+      setWaitingListSearch(string);
+    }
+    if (waitingListOrPatientList == "patientList") {
+      setCurrentPagePatientList(1);
+      setPatientsListSearch(string);
+    }
+  };
+
+  // Filtrer la liste des patients en attente
+  const filteredWaitingList = patients.filter(
+    (patient) =>
+      patient.nom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
+      patient.prenom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
+      (patient.tel.includes(waitingListSearch) && patient.statut != "PEC")
+  );
+
+  const filteredPatientsList = patients.filter(
+    (patient) =>
+      patient.nom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
+      patient.prenom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
+      (patient.tel.includes(patientsListSearch) && patient.statut == "PEC")
+  );
 
   const addPatientHandler = (patient) => {
     setPatients((prevState) => [...prevState, patient]);
@@ -165,11 +215,14 @@ const AdminPage = () => {
             />
           </Modal>
         )}
+
         <form>
           <label className="block font-bold m-2">Recherche patient</label>
           <input
             className=" rounded-lg "
-            onChange={handleSearch}
+            onChange={(e) => {
+              handleSearch(e.target.value, "waitingList");
+            }}
             type="text"
           ></input>
         </form>
@@ -216,124 +269,83 @@ const AdminPage = () => {
             </tr>
           </thead>
           <tbody>
-            {search.query == "" &&
-              patients.map(
-                (patient, count) =>
-                  patient.statut != "PEC" && (
-                    <tr class="text-gray-700">
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {count + 1}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {patient.nom}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {patient.prenom}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {patient.ville}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {returnAge(patient.dateNaissance)}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {patient.motifPriseEnCharge}
-                      </td>
-                      <td class="border-b-2 p-4 dark:border-dark-5">
-                        {patient.statut}
-                      </td>
-                      <td className="border-b-2 dark:border-dark-5">
-                        <button
-                          className=" bg-green-500 p-2 px-4 rounded-full font-bold"
-                          onClick={(e) => {
-                            validerPatient(patient);
-                          }}
-                        >
-                          Prendre en charge
-                        </button>
-                      </td>
-                      <td className="border-b-2 dark:border-dark-5">
-                        <button
-                          onClick={(e) => {
-                            setModal({ patient: patient, show: true });
-                          }}
-                          className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
-                        >
-                          Modifier
-                        </button>
-                      </td>
-                      <td className="border-b-2 dark:border-dark-5">
-                        <button
-                          className=" bg-red-500 p-2 px-4 rounded-full font-bold"
-                          onClick={(e) => {
-                            supprimerPatient(patient);
-                          }}
-                        >
-                          Supprimer
-                        </button>
-                      </td>
-                    </tr>
-                  )
-              )}
-
-            {search.query != "" &&
-              search.found.map((patient, count) => (
-                <tr class="text-gray-700">
-                  <td class="border-b-2 p-4 dark:border-dark-5">{count + 1}</td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {patient.nom}
-                  </td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {patient.prenom}
-                  </td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {patient.ville}
-                  </td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {returnAge(patient.dateNaissance)}
-                  </td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {patient.motifPriseEnCharge}
-                  </td>
-                  <td class="border-b-2 p-4 dark:border-dark-5">
-                    {patient.statut}
-                  </td>
-                  <td className="border-b-2 dark:border-dark-5">
-                    <button
-                      className=" bg-green-500 p-2 px-4 rounded-full font-bold"
-                      onClick={(e) => {
-                        validerPatient(patient);
-                      }}
-                    >
-                      Prendre en charge
-                    </button>
-                  </td>
-                  <td className="border-b-2 dark:border-dark-5">
-                    <button
-                      onClick={(e) => {
-                        setModal({ patient: patient, show: true });
-                      }}
-                      className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
-                    >
-                      Modifier
-                    </button>
-                  </td>
-                  <td className="border-b-2 dark:border-dark-5">
-                    <button
-                      className=" bg-red-500 p-2 px-4 rounded-full font-bold"
-                      onClick={(e) => {
-                        supprimerPatient(patient);
-                      }}
-                    >
-                      Supprimer
-                    </button>
-                  </td>
-                </tr>
-              ))}
+            {currentItemsWaitingList.map((patient, count) => (
+              <tr class="text-gray-700">
+                <td class="border-b-2 p-4 dark:border-dark-5">{count + 1}</td>
+                <td class="border-b-2 p-4 dark:border-dark-5">{patient.nom}</td>
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                  {patient.prenom}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                  {patient.ville}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                  {returnAge(patient.dateNaissance)}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                  {patient.motifPriseEnCharge}
+                </td>
+                <td class="border-b-2 p-4 dark:border-dark-5">
+                  {patient.statut}
+                </td>
+                <td className="border-b-2 dark:border-dark-5">
+                  <button
+                    className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                    onClick={(e) => {
+                      validerPatient(patient);
+                    }}
+                  >
+                    Prendre en charge
+                  </button>
+                </td>
+                <td className="border-b-2 dark:border-dark-5">
+                  <button
+                    onClick={(e) => {
+                      setModal({ patient: patient, show: true });
+                    }}
+                    className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
+                  >
+                    Modifier
+                  </button>
+                </td>
+                <td className="border-b-2 dark:border-dark-5">
+                  <button
+                    className=" bg-red-500 p-2 px-4 rounded-full font-bold"
+                    onClick={(e) => {
+                      supprimerPatient(patient);
+                    }}
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
+        <div className="flex mx-2">
+          {filteredWaitingList.map((item, index) => (
+            <div
+              className="p-0.5 border border-black mx-0.5"
+              key={index}
+              onClick={() => paginate(index + 1, "waitingList")}
+            >
+              {index + 1}
+            </div>
+          ))}
+        </div>
 
         <p className="text-2xl font-bold text-center m-2">Mes Patients</p>
+
+        <form>
+          <label className="block font-bold m-2">Recherche patient</label>
+          <input
+            className=" rounded-lg "
+            onChange={(e) => {
+              handleSearch(e.target.value, "patientList");
+            }}
+            type="text"
+          ></input>
+        </form>
 
         <table class="table p-4 bg-white rounded-lg shadow border m-5">
           <thead>
@@ -375,7 +387,7 @@ const AdminPage = () => {
             </tr>
           </thead>
           <tbody>
-            {patients.map(
+            {currentItemsPatientList.map(
               (patient, count) =>
                 patient.statut == "PEC" && (
                   <tr class="text-gray-700">
@@ -445,9 +457,19 @@ const AdminPage = () => {
             )}
           </tbody>
         </table>
-      </div>
 
-      <Table />
+        <div className="flex mx-2">
+          {filteredPatientsList.map((item, index) => (
+            <div
+              className="p-0.5 border border-black mx-0.5"
+              key={index}
+              onClick={() => paginate(index + 1, "waitingList")}
+            >
+              {index + 1}
+            </div>
+          ))}
+        </div>
+      </div>
 
       {modal.show && (
         <ModalEditPatient
