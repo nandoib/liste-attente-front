@@ -485,6 +485,7 @@ const AdminPage = () => {
           </p>
           {currentPagePatientList > 1 && (
             <button
+              className="text-white bg-blue-800 p-2 rounded-md mx-2"
               onClick={(e) => {
                 setCurrentPagePatientList(currentPagePatientList - 1);
               }}
@@ -493,14 +494,16 @@ const AdminPage = () => {
             </button>
           )}
           {totalPagesPatients != 1 &&
-            currentPagePatientList < totalPagesPatients}
-          <button
-            onClick={(e) => {
-              setCurrentPagePatientList(currentPagePatientList + 1);
-            }}
-          >
-            Suivant
-          </button>
+            currentPagePatientList < totalPagesPatients && (
+              <button
+                className="text-white bg-blue-800 p-2 rounded-md mx-2"
+                onClick={(e) => {
+                  setCurrentPagePatientList(currentPagePatientList + 1);
+                }}
+              >
+                Suivant
+              </button>
+            )}
         </div>
       </div>
 
