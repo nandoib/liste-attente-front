@@ -561,7 +561,7 @@ const AdminPage = () => {
             setModalDeletePatient({ show: false, patient: {} });
           }}
         >
-          <div>
+          <div className=" p-8">
             <p>Etes-vous sûr de vouloir supprimer ce patient ?</p>
             <button
               className="p-2 bg-red-500 text-white rounded-md mx-2"
