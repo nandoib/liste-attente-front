@@ -19,7 +19,7 @@ const Table = () => {
 
   // Filtrer les éléments en fonction du terme de recherche
   const filteredData = data.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+    item.prenom.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   // Calculez l'index de début et de fin des éléments actuels
