@@ -54,7 +54,7 @@ const AdminPage = () => {
   const [currentPagePatientList, setCurrentPagePatientList] = useState(1);
 
   //Nombre de résultats par page
-  const itemsPerPage = 15;
+  const itemsPerPage = 1;
 
   // Filtrer la liste des patients en attente
   const waitingListPatient = patients.filter(
@@ -344,15 +344,30 @@ const AdminPage = () => {
           </tbody>
         </table>
         <div className="flex mx-2">
-          {filteredWaitingList.map((item, index) => (
-            <div
-              className="p-0.5 border border-black mx-0.5"
-              key={index}
-              onClick={() => paginate(index + 1, "waitingList")}
+          <p>
+            Page {currentPageWaitingList} / {totalPageswaiting}
+          </p>
+          {currentPageWaitingList > 1 && (
+            <button
+              className="text-white bg-blue-800 p-2 rounded-md mx-2"
+              onClick={(e) => {
+                setCurrentPageWaitingList(currentPageWaitingList - 1);
+              }}
             >
-              {index + 1}
-            </div>
-          ))}
+              Précédent
+            </button>
+          )}
+          {totalPageswaiting != 1 &&
+            currentPageWaitingList < totalPageswaiting && (
+              <button
+                className="text-white bg-blue-800 p-2 rounded-md mx-2"
+                onClick={(e) => {
+                  setCurrentPagePatientList(currentPageWaitingList + 1);
+                }}
+              >
+                Suivant
+              </button>
+            )}
         </div>
 
         <p className="text-2xl font-bold text-center m-2">Mes Patients</p>
