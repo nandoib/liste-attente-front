@@ -242,19 +242,23 @@ const NewPatientForm = (props) => {
           >
             Valider
           </button>
-          <p className="font-bold text-center text-sm">
-            Je suis déja inscrit à la liste d'attente :
-          </p>
-          <div className="grid justify-items-center">
-            <button
-              onClick={(e) => {
-                props.changeLogShow();
-              }}
-              className="bg-blue-600 rounded-md p-2 text-sm text-white font-bold"
-            >
-              Connexion
-            </button>
-          </div>
+          {!props.admin && (
+            <>
+              <p className="font-bold text-center text-sm">
+                Je suis déja inscrit à la liste d'attente :
+              </p>
+              <div className="grid justify-items-center">
+                <button
+                  onClick={(e) => {
+                    props.changeLogShow();
+                  }}
+                  className="bg-blue-600 rounded-md p-2 text-sm text-white font-bold"
+                >
+                  Connexion
+                </button>
+              </div>
+            </>
+          )}
           {error && (
             <div
               class="bg-red-100 rounded-lg py-5 px-6 mb-4 m-2 text-center text-base text-red-700 "

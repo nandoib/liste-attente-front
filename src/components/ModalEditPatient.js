@@ -102,11 +102,11 @@ const ModalEditPatient = (props) => {
                     {props.modal.patient.prenom}
                   </Dialog.Title>
                   <div className="mt-2">
-                    <form className="space-y-6" onSubmit={formSubmitHandler}>
+                    <form className="space-y-2" onSubmit={formSubmitHandler}>
                       <div>
                         <label
                           for="email"
-                          className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                          className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                         >
                           Votre adresse mail
                         </label>
@@ -125,7 +125,7 @@ const ModalEditPatient = (props) => {
                         <div className="">
                           <label
                             for="tel"
-                            className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                            className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                           >
                             N° de téléphone
                           </label>
@@ -140,14 +140,14 @@ const ModalEditPatient = (props) => {
                           />
                         </div>
                       </div>
-                      <p className="mb-4 text-sm font-bold text-gray-900 dark:text-white">
+                      <p className="mb-1 text-sm font-bold text-gray-900 dark:text-white">
                         Adresse :
                       </p>
 
                       <div className="">
                         <label
                           for="Rue"
-                          className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                          className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                         >
                           N° et rue
                         </label>
@@ -166,7 +166,7 @@ const ModalEditPatient = (props) => {
                         <div className="">
                           <label
                             for="codePostal"
-                            className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                            className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                           >
                             Code Postal
                           </label>
@@ -183,7 +183,7 @@ const ModalEditPatient = (props) => {
                         <div className="">
                           <label
                             for="Rue"
-                            className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                            className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                           >
                             Ville
                           </label>
@@ -201,7 +201,7 @@ const ModalEditPatient = (props) => {
                       <div className="">
                         <label
                           for="Rue"
-                          className="mb-4 text-sm font-bold text-gray-900 dark:text-white"
+                          className="mb-2 text-sm font-bold text-gray-900 dark:text-white"
                         >
                           Motif de la prise en charge
                         </label>
@@ -219,7 +219,7 @@ const ModalEditPatient = (props) => {
 
                       <button
                         type="submit"
-                        className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center hover:text-green-600"
+                        className="w-full text-white bg-green-700 hover:bg-white hover:border-2 hover:border-green-600  focus:ring focus:ring-green-700 font-medium rounded-lg text-sm px-5 py-2 text-center hover:text-green-600"
                       >
                         Valider
                       </button>

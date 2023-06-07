@@ -1,12 +1,14 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useState, useEffect } from "react";
+import { MdClose } from "react-icons/md";
 
 const Modal = (props) => {
   //Props [show , close, titre]
+
   return (
     <>
-      <Transition appear show={props.show} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={props.close}>
+      <Transition appear show={props.isOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={props.closeModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -30,12 +32,16 @@ const Modal = (props) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-7/12  transform overflow-hidden rounded-2xl bg-white  text-left align-middle shadow-xl transition-all">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    {props.titre}
+                <Dialog.Panel className="w-11/12 md:w-9/12  transform overflow-hidden rounded-2xl bg-white  text-left align-middle shadow-xl transition-all">
+                  <Dialog.Title className="text-lg font-medium leading-6 bg-blue-500 p-2 text-white">
+                    <div className=" flex justify-end items-center">
+                      <button
+                        className="text-white hover:text-gray-300 focus:outline-none"
+                        onClick={props.closeModal}
+                      >
+                        <MdClose className="h-6 w-6" />
+                      </button>
+                    </div>
                   </Dialog.Title>
                   {props.children}
                 </Dialog.Panel>

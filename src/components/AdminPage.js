@@ -15,6 +15,10 @@ const AdminPage = () => {
     patient: {},
     show: false,
   });
+  const [modalDeletePatient, setModalDeletePatient] = useState({
+    show: false,
+    patient: {},
+  });
   const [newPatientForm, setNewPatientForm] = useState(false);
   const [waitingListSearch, setWaitingListSearch] = useState("");
   const [patientsListSearch, setPatientsListSearch] = useState("");
@@ -333,7 +337,10 @@ const AdminPage = () => {
                   <button
                     className=" bg-red-500 p-2 px-4 rounded-full font-bold"
                     onClick={(e) => {
-                      supprimerPatient(patient);
+                      setModalDeletePatient({
+                        show: true,
+                        patient: patient,
+                      });
                     }}
                   >
                     Supprimer
@@ -482,7 +489,10 @@ const AdminPage = () => {
                       <button
                         className=" bg-red-500 p-2 px-4 rounded-full font-bold"
                         onClick={(e) => {
-                          supprimerPatient(patient);
+                          setModalDeletePatient({
+                            show: true,
+                            patient: patient,
+                          });
                         }}
                       >
                         Supprimer
@@ -542,6 +552,36 @@ const AdminPage = () => {
           modalRdv={modalPatientRdv}
           closeModalPatientRdv={closeModalPatientRdv}
         />
+      )}
+
+      {modalDeletePatient.show && (
+        <Modal
+          isOpen={modalDeletePatient.show}
+          closeModal={(e) => {
+            setModalDeletePatient({ show: false, patient: {} });
+          }}
+        >
+          <div>
+            <p>Etes-vous sûr de vouloir supprimer ce patient ?</p>
+            <button
+              className="p-2 bg-red-500 text-white rounded-md mx-2"
+              onClick={(e) => {
+                supprimerPatient(modalDeletePatient.patient);
+                setModalDeletePatient({ show: false, patient: {} });
+              }}
+            >
+              Valider
+            </button>
+            <button
+              className="p-2 bg-blue-800 text-white rounded-md mx-2"
+              onClick={(e) => {
+                setModalDeletePatient({ show: false, patient: {} });
+              }}
+            >
+              Annuler
+            </button>
+          </div>
+        </Modal>
       )}
     </>
   );
