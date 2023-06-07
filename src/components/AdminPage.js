@@ -293,7 +293,7 @@ const AdminPage = () => {
                               validerPatient(patient);
                             }}
                           >
-                            <BiCheckCircle size={15} />
+                            <BiCheckCircle size={20} />
                           </button>
                         </td>
                         <td>
@@ -302,7 +302,7 @@ const AdminPage = () => {
                               setModal({ patient: patient, show: true });
                             }}
                           >
-                            <BiEditAlt size={15} />
+                            <BiEditAlt size={20} />
                           </button>
                         </td>
                         <td>
@@ -314,7 +314,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            <MdPersonRemoveAlt1 size={15} />
+                            <MdPersonRemoveAlt1 size={20} />
                           </button>
                         </td>
                       </tr>
