@@ -47,7 +47,11 @@ const Table = () => {
 
       <table>
         <thead>
-          <tr>{columns.map((column) => column)}</tr>
+          <tr>
+            {columns.map((column) => (
+              <th>column</th>
+            ))}
+          </tr>
         </thead>
         <tbody>
           {currentItems.map((item) => (
