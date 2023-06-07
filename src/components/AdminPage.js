@@ -19,6 +19,26 @@ const AdminPage = () => {
   const [waitingListSearch, setWaitingListSearch] = useState("");
   const [patientsListSearch, setPatientsListSearch] = useState("");
 
+  useEffect(() => {
+    const fetchPatients = async () => {
+      try {
+        const response = await fetch(
+          "https://liste-attente-back.vercel.app/admin/allPatients",
+          {
+            headers: {
+              Authorization: "Bearer " + tokenAdmin,
+            },
+          }
+        );
+        if (response.ok) {
+          const result = await response.json();
+          setPatients(result.patients);
+        }
+      } catch (err) {}
+    };
+    fetchPatients();
+  }, []);
+
   //Page actuelle pour la liste d'attente
   const [currentPageWaitingList, setCurrentPageWaitingList] = useState(1);
   const [currentPagePatientList, setCurrentPagePatientList] = useState(1);
@@ -83,27 +103,6 @@ const AdminPage = () => {
     setPatients((prevState) => [...prevState, patient]);
     setNewPatientForm(false);
   };
-
-  useEffect(() => {
-    console.log(tokenAdmin);
-    const fetchPatients = async () => {
-      try {
-        const response = await fetch(
-          "https://liste-attente-back.vercel.app/admin/allPatients",
-          {
-            headers: {
-              Authorization: "Bearer " + tokenAdmin,
-            },
-          }
-        );
-        if (response.ok) {
-          const result = await response.json();
-          setPatients(result.patients);
-        }
-      } catch (err) {}
-    };
-    fetchPatients();
-  }, []);
 
   const closeModal = () => {
     setModal({ patient: {}, show: false });
