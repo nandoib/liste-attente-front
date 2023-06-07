@@ -12,7 +12,7 @@ const Table = () => {
   // Supposons que vous ayez un tableau de données
   const data = [
     { id: 1, prenom: "Nando", nom: "Ibba" },
-    { id: 2, prenom: "Nando", nom: "Ibba" },
+    { id: 2, prenom: "Priscille", nom: "Ibba" },
   ];
 
   const columns = ["prenom", "nom"];
@@ -49,7 +49,7 @@ const Table = () => {
         <thead>
           <tr>
             {columns.map((column) => (
-              <th>column</th>
+              <th>{column}</th>
             ))}
           </tr>
         </thead>
@@ -63,13 +63,17 @@ const Table = () => {
         </tbody>
       </table>
 
-      <ul className="pagination">
+      <div className="flex mx-2">
         {filteredData.map((item, index) => (
-          <li key={index} onClick={() => paginate(index + 1)}>
+          <li
+            className="p-1 border border-black mx-2"
+            key={index}
+            onClick={() => paginate(index + 1)}
+          >
             {index + 1}
           </li>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
