@@ -229,7 +229,7 @@ const AdminPage = () => {
           onClick={(e) => {
             setNewPatientForm(!newPatientForm);
           }}
-          className="bg-blue-800 text-white w-4/12 rounded-md p-2 border mt-6 "
+          className="bg-blue-700 text-white w-4/12 rounded-md p-2 border mt-6 "
         >
           Ajouter un patient
         </button>
@@ -257,7 +257,7 @@ const AdminPage = () => {
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
         <table class="table p-4 bg-white rounded-lg shadow border w-full m-5">
-          <thead className="bg-blue-800 text-white">
+          <thead className="bg-blue-700 text-white">
             <tr className="text-white">
               <th>#</th>
               <th>Nom</th>
@@ -275,24 +275,14 @@ const AdminPage = () => {
           <tbody>
             {currentItemsWaitingList.map((patient, count) => (
               <tr class="text-gray-700">
-                <td class="border-b-2 p-4 dark:border-dark-5">{count + 1}</td>
-                <td class="border-b-2 p-4 dark:border-dark-5">{patient.nom}</td>
-                <td class="border-b-2 p-4 dark:border-dark-5">
-                  {patient.prenom}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5">
-                  {patient.ville}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5">
-                  {returnAge(patient.dateNaissance)}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5">
-                  {patient.motifPriseEnCharge}
-                </td>
-                <td class="border-b-2 p-4 dark:border-dark-5">
-                  {patient.statut}
-                </td>
-                <td className="border-b-2 dark:border-dark-5">
+                <td>{count + 1}</td>
+                <td>{patient.nom}</td>
+                <td>{patient.prenom}</td>
+                <td>{patient.ville}</td>
+                <td>{returnAge(patient.dateNaissance)}</td>
+                <td>{patient.motifPriseEnCharge}</td>
+                <td>{patient.statut}</td>
+                <td>
                   <button
                     className=" bg-green-500 p-2 px-4 rounded-full font-bold"
                     onClick={(e) => {
@@ -302,7 +292,7 @@ const AdminPage = () => {
                     Prendre en charge
                   </button>
                 </td>
-                <td className="border-b-2 dark:border-dark-5">
+                <td>
                   <button
                     onClick={(e) => {
                       setModal({ patient: patient, show: true });
@@ -312,7 +302,7 @@ const AdminPage = () => {
                     Modifier
                   </button>
                 </td>
-                <td className="border-b-2 dark:border-dark-5">
+                <td>
                   <button
                     className=" bg-red-500 p-2 px-4 rounded-full font-bold"
                     onClick={(e) => {
