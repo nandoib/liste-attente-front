@@ -264,16 +264,18 @@ const AdminPage = () => {
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
                     <tr className="p-4 ">
-                      <th>#</th>
-                      <th>Nom</th>
-                      <th>Prenom</th>
-                      <th>Ville</th>
-                      <th>Age</th>
-                      <th>Motif PeC</th>
-                      <th>Statut</th>
-                      <th>Prendre en charge</th>
-                      <th>Modifier</th>
-                      <th>Supprimer</th>
+                      <th className="text-md font-bold p-2">#</th>
+                      <th className="text-md font-bold p-2">Nom</th>
+                      <th className="text-md font-bold p-2">Prenom</th>
+                      <th className="text-md font-bold p-2">Ville</th>
+                      <th className="text-md font-bold p-2">Age</th>
+                      <th className="text-md font-bold p-2">Motif PeC</th>
+                      <th className="text-md font-bold p-2">Statut</th>
+                      <th className="text-md font-bold p-2">
+                        Prendre en charge
+                      </th>
+                      <th className="text-md font-bold p-2">Modifier</th>
+                      <th className="text-md font-bold p-2">Supprimer</th>
                     </tr>
                   </thead>
                   <tbody>
