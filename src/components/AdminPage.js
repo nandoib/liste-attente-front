@@ -362,7 +362,7 @@ const AdminPage = () => {
               <button
                 className="text-white bg-blue-800 p-2 rounded-md mx-2"
                 onClick={(e) => {
-                  setCurrentPagePatientList(currentPageWaitingList + 1);
+                  setCurrentPageWaitingList(currentPageWaitingList + 1);
                 }}
               >
                 Suivant
