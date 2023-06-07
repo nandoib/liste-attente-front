@@ -258,41 +258,18 @@ const AdminPage = () => {
 
         <table class="table p-4 bg-white rounded-lg shadow border w-full m-5">
           <thead className="bg-blue-800 text-white">
-            <tr>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                #
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Nom
-              </th>
-              <th
-                class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold
-             text-gray-900"
-              >
-                Prenom
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Ville
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Age
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Motif PeC
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Statut
-              </th>
+            <tr className="text-white">
+              <th>#</th>
+              <th>Nom</th>
+              <th>Prenom</th>
+              <th>Ville</th>
+              <th>Age</th>
+              <th>Motif PeC</th>
+              <th>Statut</th>
 
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Prendre en charge
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Modifier
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Supprimer
-              </th>
+              <th>Prendre en charge</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
             </tr>
           </thead>
           <tbody>
