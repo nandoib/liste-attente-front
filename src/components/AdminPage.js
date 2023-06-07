@@ -476,7 +476,7 @@ const AdminPage = () => {
 
         <div className="flex mx-2">
           <p>
-            Page {currentItemsPatientList} / {indexOfLastItemPatientList}
+            Page {currentPagePatientList} / {indexOfLastItemPatientList}
           </p>
           {currentPagePatientList > 1 && (
             <button
