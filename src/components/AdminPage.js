@@ -54,7 +54,7 @@ const AdminPage = () => {
   const [currentPagePatientList, setCurrentPagePatientList] = useState(1);
 
   //Nombre de résultats par page
-  const itemsPerPage = 1;
+  const itemsPerPage = 10;
 
   // Filtrer la liste des patients en attente
   const waitingListPatient = patients.filter(
