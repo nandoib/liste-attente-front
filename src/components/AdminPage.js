@@ -5,7 +5,7 @@ import ModalRendezVous from "./ModalRendezVous";
 import NewPatientForm from "./NewPatientForm";
 import Modal from "./Modal";
 import Table from "./Table";
-import { BiCheckCircle, BiSolidEditAlt } from "react-icons/bi";
+import { BiCheckCircle, BiEditAlt } from "react-icons/bi";
 import { MdPersonRemoveAlt1 } from "react-icons/md";
 
 const AdminPage = () => {
@@ -302,7 +302,7 @@ const AdminPage = () => {
                               setModal({ patient: patient, show: true });
                             }}
                           >
-                            <BiSolidEditAlt size={15} />
+                            <BiEditAlt size={15} />
                           </button>
                         </td>
                         <td>
