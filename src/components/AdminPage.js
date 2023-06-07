@@ -258,7 +258,7 @@ const AdminPage = () => {
 
         <div class="">
           <div class="overflow-x-auto ">
-            <div class="inline-block min-w-full">
+            <div class="grid min-w-full">
               <div class="overflow-hidden lg:p-10">
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
