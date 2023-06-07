@@ -57,18 +57,22 @@ const AdminPage = () => {
   const itemsPerPage = 15;
 
   // Filtrer la liste des patients en attente
-  const filteredWaitingList = patients.filter(
+  const waitingListPatient = patients.filter(
+    (patient) => patient.statut != "PEC"
+  );
+  const filteredWaitingList = waitingListPatient.filter(
     (patient) =>
       patient.nom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
       patient.prenom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
-      (patient.tel.includes(waitingListSearch) && patient.statut != "PEC")
+      patient.tel.includes(waitingListSearch)
   );
 
-  const filteredPatientsList = patients.filter(
+  const patientList = patients.filter((patient) => patient.statut === "PEC");
+  const filteredPatientsList = patientList.filter(
     (patient) =>
       patient.nom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
       patient.prenom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
-      (patient.tel.includes(patientsListSearch) && patient.statut == "PEC")
+      patient.tel.includes(patientsListSearch)
   );
 
   // Calculez l'index de début et de fin des éléments actuels pour la liste d'attente
@@ -471,15 +475,25 @@ const AdminPage = () => {
         </table>
 
         <div className="flex mx-2">
-          {filteredPatientsList.map((item, index) => (
-            <div
-              className="p-0.5 border border-black mx-0.5"
-              key={index}
-              onClick={() => paginate(index + 1, "waitingList")}
+          <p>
+            Page {currentItemsPatientList} / {indexOfLastItemPatientList}
+          </p>
+          {currentPagePatientList > 1 && (
+            <button
+              onClick={(e) => {
+                setCurrentPagePatientList(currentPagePatientList - 1);
+              }}
             >
-              {index + 1}
-            </div>
-          ))}
+              Précédent
+            </button>
+          )}
+          <button
+            onClick={(e) => {
+              setCurrentPagePatientList(currentPagePatientList + 1);
+            }}
+          >
+            Suivant
+          </button>
         </div>
       </div>
 
