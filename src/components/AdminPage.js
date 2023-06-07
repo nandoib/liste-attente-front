@@ -257,11 +257,11 @@ const AdminPage = () => {
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
         <div class="">
-          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div class="overflow-hidden p-10">
-                <table class="min-w-full text-left text-sm font-light">
-                  <thead class="border-b  p-4 text-white bg-blue-700">
+          <div class="overflow-x-auto ">
+            <div class="inline-block min-w-full">
+              <div class="overflow-hidden lg:p-10">
+                <table class="min-w-full text-left text-sm font-light table-auto">
+                  <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
                     <tr className="p-4">
                       <th>#</th>
                       <th>Nom</th>
@@ -367,7 +367,7 @@ const AdminPage = () => {
           ></input>
         </form>
 
-        <table class="table p-4 bg-white rounded-lg shadow border m-5">
+        <table class=" bg-white rounded-lg shadow border m-5">
           <thead>
             <tr>
               <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
