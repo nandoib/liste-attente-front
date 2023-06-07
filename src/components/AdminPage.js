@@ -258,9 +258,9 @@ const AdminPage = () => {
 
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
-        <div class="w-full">
+        <div class="flex flex-col">
           <div class="overflow-x-auto ">
-            <div class="w-full">
+            <div class="inline-block min-w-full">
               <div class="overflow-hidden lg:p-10">
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
