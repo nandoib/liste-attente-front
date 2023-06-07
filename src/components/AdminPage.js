@@ -83,7 +83,9 @@ const AdminPage = () => {
     indexOfLastItemWaitingList
   );
 
-  const totalPageswaiting = Math.ceil(currentItemsWaitingList / itemsPerPage);
+  const totalPageswaiting = Math.ceil(
+    currentItemsWaitingList.length() / itemsPerPage
+  );
 
   // Calculez l'index de début et de fin des éléments actuels pour la liste des patients
   const indexOfLastItemPatientList = currentPagePatientList * itemsPerPage;
@@ -93,7 +95,9 @@ const AdminPage = () => {
     indexOfLastItemPatientList
   );
 
-  const totalPagesPatients = Math.ceil(currentItemsPatientList / itemsPerPage);
+  const totalPagesPatients = Math.ceil(
+    currentItemsPatientList.length() / itemsPerPage
+  );
 
   // Changement de page
   const paginate = (pageNumber, waitingListOrPatientList) => {
