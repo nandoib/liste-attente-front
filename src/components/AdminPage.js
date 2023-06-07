@@ -39,6 +39,8 @@ const AdminPage = () => {
     fetchPatients();
   }, []);
 
+  console.log(patients);
+
   //Page actuelle pour la liste d'attente
   const [currentPageWaitingList, setCurrentPageWaitingList] = useState(1);
   const [currentPagePatientList, setCurrentPagePatientList] = useState(1);
@@ -54,6 +56,8 @@ const AdminPage = () => {
     indexOfLastItemWaitingList
   );
 
+  console.log(currentItemsWaitingList);
+
   // Calculez l'index de début et de fin des éléments actuels pour la liste des patients
   const indexOfLastItemPatientList = currentPagePatientList * itemsPerPage;
   const indexOfFirstItemPatientList = indexOfLastItemPatientList - itemsPerPage;
@@ -61,6 +65,7 @@ const AdminPage = () => {
     indexOfFirstItemPatientList,
     indexOfLastItemPatientList
   );
+  console.log(currentItemsPatientList);
 
   // Changement de page
   const paginate = (pageNumber, waitingListOrPatientList) => {
