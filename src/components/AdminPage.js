@@ -4,7 +4,6 @@ import ModalNewRdv from "./ModalNewRdv";
 import ModalRendezVous from "./ModalRendezVous";
 import NewPatientForm from "./NewPatientForm";
 import Modal from "./Modal";
-import Table from "./Table";
 import { BiCheckCircle, BiEditAlt } from "react-icons/bi";
 import { MdPersonRemoveAlt1 } from "react-icons/md";
 
@@ -264,7 +263,7 @@ const AdminPage = () => {
               <div class="overflow-hidden lg:p-10">
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
-                    <tr className="p-4">
+                    <tr className="p-4 ">
                       <th>#</th>
                       <th>Nom</th>
                       <th>Prenom</th>
@@ -279,7 +278,7 @@ const AdminPage = () => {
                   </thead>
                   <tbody>
                     {currentItemsWaitingList.map((patient, count) => (
-                      <tr>
+                      <tr className="text-md p-2">
                         <td>{count + 1}</td>
                         <td>{patient.nom}</td>
                         <td>{patient.prenom}</td>
