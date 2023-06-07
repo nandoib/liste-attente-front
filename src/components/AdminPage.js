@@ -29,7 +29,7 @@ const AdminPage = () => {
   // Calculez l'index de début et de fin des éléments actuels pour la liste d'attente
   const indexOfLastItemWaitingList = currentPageWaitingList * itemsPerPage;
   const indexOfFirstItemWaitingList = indexOfLastItemWaitingList - itemsPerPage;
-  const currentItemsWaitingList = waitingListSearch.slice(
+  const currentItemsWaitingList = filteredWaitingList.slice(
     indexOfFirstItemWaitingList,
     indexOfLastItemWaitingList
   );
@@ -37,7 +37,7 @@ const AdminPage = () => {
   // Calculez l'index de début et de fin des éléments actuels pour la liste des patients
   const indexOfLastItemPatientList = currentPagePatientList * itemsPerPage;
   const indexOfFirstItemPatientList = indexOfLastItemPatientList - itemsPerPage;
-  const currentItemsPatientList = patientsListSearch.slice(
+  const currentItemsPatientList = filteredPatientsList.slice(
     indexOfFirstItemPatientList,
     indexOfLastItemPatientList
   );
