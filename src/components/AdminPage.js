@@ -259,9 +259,9 @@ const AdminPage = () => {
         <div class="flex flex-col">
           <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-              <div class="overflow-hidden">
+              <div class="overflow-hidden p-10">
                 <table class="min-w-full text-left text-sm font-light">
-                  <thead class="border-b font-medium dark:border-neutral-500">
+                  <thead class="border-b  p-4 text-white bg-blue-500">
                     <tr>
                       <th>#</th>
                       <th>Nom</th>
@@ -278,7 +278,7 @@ const AdminPage = () => {
                   </thead>
                   <tbody>
                     {currentItemsWaitingList.map((patient, count) => (
-                      <tr class="text-gray-700">
+                      <tr>
                         <td>{count + 1}</td>
                         <td>{patient.nom}</td>
                         <td>{patient.prenom}</td>
