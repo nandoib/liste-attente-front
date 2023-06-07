@@ -56,6 +56,21 @@ const AdminPage = () => {
   //Nombre de résultats par page
   const itemsPerPage = 15;
 
+  // Filtrer la liste des patients en attente
+  const filteredWaitingList = patients.filter(
+    (patient) =>
+      patient.nom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
+      patient.prenom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
+      (patient.tel.includes(waitingListSearch) && patient.statut != "PEC")
+  );
+
+  const filteredPatientsList = patients.filter(
+    (patient) =>
+      patient.nom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
+      patient.prenom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
+      (patient.tel.includes(patientsListSearch) && patient.statut == "PEC")
+  );
+
   // Calculez l'index de début et de fin des éléments actuels pour la liste d'attente
   const indexOfLastItemWaitingList = currentPageWaitingList * itemsPerPage;
   const indexOfFirstItemWaitingList = indexOfLastItemWaitingList - itemsPerPage;
@@ -96,21 +111,6 @@ const AdminPage = () => {
       setPatientsListSearch(string);
     }
   };
-
-  // Filtrer la liste des patients en attente
-  const filteredWaitingList = patients.filter(
-    (patient) =>
-      patient.nom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
-      patient.prenom.toLowerCase().includes(waitingListSearch.toLowerCase()) ||
-      (patient.tel.includes(waitingListSearch) && patient.statut != "PEC")
-  );
-
-  const filteredPatientsList = patients.filter(
-    (patient) =>
-      patient.nom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
-      patient.prenom.toLowerCase().includes(patientsListSearch.toLowerCase()) ||
-      (patient.tel.includes(patientsListSearch) && patient.statut == "PEC")
-  );
 
   const addPatientHandler = (patient) => {
     setPatients((prevState) => [...prevState, patient]);
