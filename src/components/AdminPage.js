@@ -222,12 +222,14 @@ const AdminPage = () => {
   return (
     <>
       <div className="p-8 my-4">
-        <h1 className="text-center text-xl font-bold">Espace administrateur</h1>
+        <h1 className="text-center text-3xl font-bold mt-10">
+          Espace administrateur
+        </h1>
         <button
           onClick={(e) => {
             setNewPatientForm(!newPatientForm);
           }}
-          className="bg-blue-500 w-full rounded-xl p-2 border mt-6 text-sm"
+          className="bg-blue-800 text-white w-4/12 rounded-md p-2 border mt-6 "
         >
           Ajouter un patient
         </button>
@@ -242,7 +244,7 @@ const AdminPage = () => {
         )}
 
         <form>
-          <label className="block font-bold m-2">Recherche patient</label>
+          <label className="block font-bold m-2">Rechercher un patient</label>
           <input
             className=" rounded-lg "
             onChange={(e) => {
@@ -254,8 +256,8 @@ const AdminPage = () => {
 
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
-        <table class="table p-4 bg-white rounded-lg shadow border m-5">
-          <thead>
+        <table class="table p-4 bg-white rounded-lg shadow border w-full m-5">
+          <thead className="bg-blue-800 text-white">
             <tr>
               <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
                 #
@@ -380,7 +382,7 @@ const AdminPage = () => {
         <p className="text-2xl font-bold text-center m-2">Mes Patients</p>
 
         <form>
-          <label className="block font-bold m-2">Recherche patient</label>
+          <label className="block font-bold m-2">Rechercher un patient</label>
           <input
             className=" rounded-lg "
             onChange={(e) => {
