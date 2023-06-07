@@ -256,94 +256,102 @@ const AdminPage = () => {
 
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
-        <table class="table p-4 bg-white rounded-lg shadow border w-full m-5">
-          <thead className="bg-blue-700 text-white">
-            <tr className="text-white">
-              <th>#</th>
-              <th>Nom</th>
-              <th>Prenom</th>
-              <th>Ville</th>
-              <th>Age</th>
-              <th>Motif PeC</th>
-              <th>Statut</th>
+        <div class="flex flex-col">
+          <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+              <div class="overflow-hidden">
+                <table class="min-w-full text-left text-sm font-light">
+                  <thead class="border-b font-medium dark:border-neutral-500">
+                    <tr>
+                      <th>#</th>
+                      <th>Nom</th>
+                      <th>Prenom</th>
+                      <th>Ville</th>
+                      <th>Age</th>
+                      <th>Motif PeC</th>
+                      <th>Statut</th>
 
-              <th>Prendre en charge</th>
-              <th>Modifier</th>
-              <th>Supprimer</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItemsWaitingList.map((patient, count) => (
-              <tr class="text-gray-700">
-                <td>{count + 1}</td>
-                <td>{patient.nom}</td>
-                <td>{patient.prenom}</td>
-                <td>{patient.ville}</td>
-                <td>{returnAge(patient.dateNaissance)}</td>
-                <td>{patient.motifPriseEnCharge}</td>
-                <td>{patient.statut}</td>
-                <td>
-                  <button
-                    className=" bg-green-500 p-2 px-4 rounded-full font-bold"
-                    onClick={(e) => {
-                      validerPatient(patient);
-                    }}
-                  >
-                    Prendre en charge
-                  </button>
-                </td>
-                <td>
-                  <button
-                    onClick={(e) => {
-                      setModal({ patient: patient, show: true });
-                    }}
-                    className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
-                  >
-                    Modifier
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className=" bg-red-500 p-2 px-4 rounded-full font-bold"
-                    onClick={(e) => {
-                      setModalDeletePatient({
-                        show: true,
-                        patient: patient,
-                      });
-                    }}
-                  >
-                    Supprimer
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="flex mx-2">
-          <p>
-            Page {currentPageWaitingList} / {totalPageswaiting}
-          </p>
-          {currentPageWaitingList > 1 && (
-            <button
-              className="text-white bg-blue-800 p-2 rounded-md mx-2"
-              onClick={(e) => {
-                setCurrentPageWaitingList(currentPageWaitingList - 1);
-              }}
-            >
-              Précédent
-            </button>
-          )}
-          {totalPageswaiting != 1 &&
-            currentPageWaitingList < totalPageswaiting && (
-              <button
-                className="text-white bg-blue-800 p-2 rounded-md mx-2"
-                onClick={(e) => {
-                  setCurrentPageWaitingList(currentPageWaitingList + 1);
-                }}
-              >
-                Suivant
-              </button>
-            )}
+                      <th>Prendre en charge</th>
+                      <th>Modifier</th>
+                      <th>Supprimer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentItemsWaitingList.map((patient, count) => (
+                      <tr class="text-gray-700">
+                        <td>{count + 1}</td>
+                        <td>{patient.nom}</td>
+                        <td>{patient.prenom}</td>
+                        <td>{patient.ville}</td>
+                        <td>{returnAge(patient.dateNaissance)}</td>
+                        <td>{patient.motifPriseEnCharge}</td>
+                        <td>{patient.statut}</td>
+                        <td>
+                          <button
+                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            onClick={(e) => {
+                              validerPatient(patient);
+                            }}
+                          >
+                            Prendre en charge
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            onClick={(e) => {
+                              setModal({ patient: patient, show: true });
+                            }}
+                            className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
+                          >
+                            Modifier
+                          </button>
+                        </td>
+                        <td>
+                          <button
+                            className=" bg-red-500 p-2 px-4 rounded-full font-bold"
+                            onClick={(e) => {
+                              setModalDeletePatient({
+                                show: true,
+                                patient: patient,
+                              });
+                            }}
+                          >
+                            Supprimer
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="flex mx-2">
+                  <p>
+                    Page {currentPageWaitingList} / {totalPageswaiting}
+                  </p>
+                  {currentPageWaitingList > 1 && (
+                    <button
+                      className="text-white bg-blue-800 p-2 rounded-md mx-2"
+                      onClick={(e) => {
+                        setCurrentPageWaitingList(currentPageWaitingList - 1);
+                      }}
+                    >
+                      Précédent
+                    </button>
+                  )}
+                  {totalPageswaiting != 1 &&
+                    currentPageWaitingList < totalPageswaiting && (
+                      <button
+                        className="text-white bg-blue-800 p-2 rounded-md mx-2"
+                        onClick={(e) => {
+                          setCurrentPageWaitingList(currentPageWaitingList + 1);
+                        }}
+                      >
+                        Suivant
+                      </button>
+                    )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <p className="text-2xl font-bold text-center m-2">Mes Patients</p>
