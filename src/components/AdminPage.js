@@ -279,13 +279,23 @@ const AdminPage = () => {
                   <tbody>
                     {currentItemsWaitingList.map((patient, count) => (
                       <tr className="text-md p-2">
-                        <td>{count + 1}</td>
-                        <td>{patient.nom}</td>
-                        <td>{patient.prenom}</td>
-                        <td>{patient.ville}</td>
-                        <td>{returnAge(patient.dateNaissance)}</td>
-                        <td>{patient.motifPriseEnCharge}</td>
-                        <td>{patient.statut}</td>
+                        <td className="text-md font-bold p-2">{count + 1}</td>
+                        <td className="text-md font-bold p-2">{patient.nom}</td>
+                        <td className="text-md font-bold p-2">
+                          {patient.prenom}
+                        </td>
+                        <td className="text-md font-bold p-2">
+                          {patient.ville}
+                        </td>
+                        <td className="text-md font-bold p-2">
+                          {returnAge(patient.dateNaissance)}
+                        </td>
+                        <td className="text-md font-bold p-2">
+                          {patient.motifPriseEnCharge}
+                        </td>
+                        <td className="text-md font-bold p-2">
+                          {patient.statut}
+                        </td>
                         <td>
                           <button
                             onClick={(e) => {
