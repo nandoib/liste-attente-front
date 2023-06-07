@@ -233,7 +233,7 @@ const AdminPage = () => {
         </button>
 
         {newPatientForm && (
-          <Modal show={newPatientForm} close={closeNewPatientModal}>
+          <Modal isOpen={newPatientForm} closeModal={closeNewPatientModal}>
             <NewPatientForm
               admin={true}
               addPatientHandler={addPatientHandler}
