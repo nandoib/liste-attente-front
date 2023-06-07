@@ -5,6 +5,8 @@ import ModalRendezVous from "./ModalRendezVous";
 import NewPatientForm from "./NewPatientForm";
 import Modal from "./Modal";
 import Table from "./Table";
+import { BiCheckCircle, BiSolidEditAlt } from "react-icons/bi";
+import { MdPersonRemoveAlt1 } from "react-icons/md";
 
 const AdminPage = () => {
   const tokenAdmin = localStorage.getItem("tokenAdmin");
@@ -270,7 +272,6 @@ const AdminPage = () => {
                       <th>Age</th>
                       <th>Motif PeC</th>
                       <th>Statut</th>
-
                       <th>Prendre en charge</th>
                       <th>Modifier</th>
                       <th>Supprimer</th>
@@ -293,7 +294,7 @@ const AdminPage = () => {
                               validerPatient(patient);
                             }}
                           >
-                            Prendre en charge
+                            <BiCheckCircle size={15} />
                           </button>
                         </td>
                         <td>
@@ -303,7 +304,7 @@ const AdminPage = () => {
                             }}
                             className=" bg-yellow-300 p-0.5 rounded-md"
                           >
-                            Modifier
+                            <BiSolidEditAlt size={15} />
                           </button>
                         </td>
                         <td>
@@ -316,7 +317,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            Supprimer
+                            <MdPersonRemoveAlt1 size={15} />
                           </button>
                         </td>
                       </tr>
