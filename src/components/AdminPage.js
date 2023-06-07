@@ -4,6 +4,7 @@ import ModalNewRdv from "./ModalNewRdv";
 import ModalRendezVous from "./ModalRendezVous";
 import NewPatientForm from "./NewPatientForm";
 import Modal from "./Modal";
+import Table from "./Table";
 
 const AdminPage = () => {
   const tokenAdmin = localStorage.getItem("tokenAdmin");
@@ -172,6 +173,8 @@ const AdminPage = () => {
             type="text"
           ></input>
         </form>
+
+        <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
         <table class="table p-4 bg-white rounded-lg shadow border m-5">
           <thead>
@@ -443,6 +446,8 @@ const AdminPage = () => {
           </tbody>
         </table>
       </div>
+
+      <Table />
 
       {modal.show && (
         <ModalEditPatient
