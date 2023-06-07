@@ -289,7 +289,6 @@ const AdminPage = () => {
                         <td>{patient.statut}</td>
                         <td>
                           <button
-                            className=" bg-green-500 p-0.5 rounded-md"
                             onClick={(e) => {
                               validerPatient(patient);
                             }}
@@ -302,14 +301,12 @@ const AdminPage = () => {
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
                             }}
-                            className=" bg-yellow-300 p-0.5 rounded-md"
                           >
                             <BiSolidEditAlt size={15} />
                           </button>
                         </td>
                         <td>
                           <button
-                            className=" bg-red-500 p-0.5 rounded-md"
                             onClick={(e) => {
                               setModalDeletePatient({
                                 show: true,
