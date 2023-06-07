@@ -261,8 +261,8 @@ const AdminPage = () => {
             <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
               <div class="overflow-hidden p-10">
                 <table class="min-w-full text-left text-sm font-light">
-                  <thead class="border-b  p-4 text-white bg-blue-500">
-                    <tr>
+                  <thead class="border-b  p-4 text-white bg-blue-700">
+                    <tr className="p-4">
                       <th>#</th>
                       <th>Nom</th>
                       <th>Prenom</th>
@@ -288,7 +288,7 @@ const AdminPage = () => {
                         <td>{patient.statut}</td>
                         <td>
                           <button
-                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            className=" bg-green-500 p-2 rounded-md"
                             onClick={(e) => {
                               validerPatient(patient);
                             }}
@@ -301,14 +301,14 @@ const AdminPage = () => {
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
                             }}
-                            className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
+                            className=" bg-yellow-300 p-2 rounded-md"
                           >
                             Modifier
                           </button>
                         </td>
                         <td>
                           <button
-                            className=" bg-red-500 p-2 px-4 rounded-full font-bold"
+                            className=" bg-red-500 p-2 rounded-md"
                             onClick={(e) => {
                               setModalDeletePatient({
                                 show: true,
