@@ -252,14 +252,15 @@ const AdminPage = () => {
               handleSearch(e.target.value, "waitingList");
             }}
             type="text"
+            w
           ></input>
         </form>
 
         <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
-        <div class="">
+        <div class="w-full">
           <div class="overflow-x-auto ">
-            <div class=" min-w-full">
+            <div class="w-full">
               <div class="overflow-hidden lg:p-10">
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
