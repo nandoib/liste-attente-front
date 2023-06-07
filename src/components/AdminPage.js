@@ -288,7 +288,7 @@ const AdminPage = () => {
                         <td>{patient.statut}</td>
                         <td>
                           <button
-                            className=" bg-green-500 p-2 rounded-md"
+                            className=" bg-green-500 p-0.5 rounded-md"
                             onClick={(e) => {
                               validerPatient(patient);
                             }}
@@ -301,14 +301,14 @@ const AdminPage = () => {
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
                             }}
-                            className=" bg-yellow-300 p-2 rounded-md"
+                            className=" bg-yellow-300 p-0.5 rounded-md"
                           >
                             Modifier
                           </button>
                         </td>
                         <td>
                           <button
-                            className=" bg-red-500 p-2 rounded-md"
+                            className=" bg-red-500 p-0.5 rounded-md"
                             onClick={(e) => {
                               setModalDeletePatient({
                                 show: true,
