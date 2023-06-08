@@ -423,7 +423,7 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
-                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            className=" bg-blue-700 p-2 px-4 rounded-full font-bold"
                             onClick={(e) => {
                               setModalPatientRdv({
                                 patient: patient,
@@ -436,7 +436,7 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
-                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            className=" bg-blue-700 p-2 px-4 rounded-full font-bold"
                             onClick={(e) => {
                               setModalRdv({ patient: patient, show: true });
                             }}
