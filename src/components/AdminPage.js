@@ -4,7 +4,12 @@ import ModalNewRdv from "./ModalNewRdv";
 import ModalRendezVous from "./ModalRendezVous";
 import NewPatientForm from "./NewPatientForm";
 import Modal from "./Modal";
-import { BiCheckCircle, BiEditAlt } from "react-icons/bi";
+import {
+  BiCheckCircle,
+  BiEditAlt,
+  BiCalendar,
+  BiCalendarPlus,
+} from "react-icons/bi";
 import { MdPersonRemoveAlt1 } from "react-icons/md";
 
 const AdminPage = () => {
@@ -391,12 +396,13 @@ const AdminPage = () => {
                       <th className="text-md font-bold p-2">Motif PeC</th>
                       <th className="text-md font-bold p-2">Statut</th>
                       <th className="text-md font-bold p-2">liste RDV</th>
+                      <th className="text-md font-bold p-2">Nouveau RDV</th>
                       <th className="text-md font-bold p-2">Modifier</th>
                       <th className="text-md font-bold p-2">Supprimer</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {currentItemsWaitingList.map((patient, count) => (
+                    {currentItemsPatientList.map((patient, count) => (
                       <tr className="text-md p-2 border-b transition duration-300 ease-in-out hover:bg-neutral-100">
                         <td className="text-md font-bold p-3">{count + 1}</td>
                         <td className="text-md font-bold p-3">{patient.nom}</td>
@@ -425,7 +431,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            Voir les RDV
+                            <BiCalendar size={25} />
                           </button>
                         </td>
                         <td className="p-3">
@@ -435,7 +441,16 @@ const AdminPage = () => {
                               setModalRdv({ patient: patient, show: true });
                             }}
                           >
-                            Nouveau RDV
+                            <BiCalendarPlus size={25} />
+                          </button>
+                        </td>
+                        <td className="p-3">
+                          <button
+                            onClick={(e) => {
+                              setModal({ patient: patient, show: true });
+                            }}
+                          >
+                            <BiEditAlt size={25} />
                           </button>
                         </td>
                         <td className="p-3">
