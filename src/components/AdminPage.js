@@ -249,7 +249,7 @@ const AdminPage = () => {
         <form>
           <label className="block font-bold m-2">Rechercher un patient</label>
           <input
-            className=" rounded-lg "
+            className=" rounded-lg mb-4 "
             onChange={(e) => {
               handleSearch(e.target.value, "waitingList");
             }}
@@ -376,145 +376,113 @@ const AdminPage = () => {
           ></input>
         </form>
 
-        <table class=" bg-white rounded-lg shadow border m-5">
-          <thead>
-            <tr>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                #
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Nom
-              </th>
-              <th
-                class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold
-             text-gray-900"
-              >
-                Prenom
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Ville
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Age
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Motif PeC
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Statut
-              </th>
-
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Prendre en charge
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Modifier
-              </th>
-              <th class="border-b-2 p-4 dark:border-dark-5 whitespace-nowrap font-bold text-gray-900">
-                Supprimer
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItemsPatientList.map(
-              (patient, count) =>
-                patient.statut == "PEC" && (
-                  <tr class="text-gray-700">
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {count + 1}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {patient.nom}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {patient.prenom}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {patient.ville}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {returnAge(patient.dateNaissance)}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {patient.motifPriseEnCharge}
-                    </td>
-                    <td class="border-b-2 p-4 dark:border-dark-5">
-                      {patient.statut}
-                    </td>
-                    <td className="border-b-2 dark:border-dark-5">
+        <div class="flex flex-col">
+          <div class="overflow-x-auto ">
+            <div class="inline-block min-w-full">
+              <div class="overflow-hidden lg:p-10">
+                <table class="min-w-full text-left text-sm font-light table-auto">
+                  <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
+                    <tr className="p-4  ">
+                      <th className="text-md font-bold p-2">#</th>
+                      <th className="text-md font-bold p-2">Nom</th>
+                      <th className="text-md font-bold p-2">Prenom</th>
+                      <th className="text-md font-bold p-2">Ville</th>
+                      <th className="text-md font-bold p-2">Age</th>
+                      <th className="text-md font-bold p-2">Motif PeC</th>
+                      <th className="text-md font-bold p-2">Statut</th>
+                      <th className="text-md font-bold p-2">liste RDV</th>
+                      <th className="text-md font-bold p-2">Modifier</th>
+                      <th className="text-md font-bold p-2">Supprimer</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentItemsWaitingList.map((patient, count) => (
+                      <tr className="text-md p-2 border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                        <td className="text-md font-bold p-3">{count + 1}</td>
+                        <td className="text-md font-bold p-3">{patient.nom}</td>
+                        <td className="text-md font-bold p-3">
+                          {patient.prenom}
+                        </td>
+                        <td className="text-md font-bold p-3">
+                          {patient.ville}
+                        </td>
+                        <td className="text-md font-bold p-3">
+                          {returnAge(patient.dateNaissance)}
+                        </td>
+                        <td className="text-md font-bold p-3">
+                          {patient.motifPriseEnCharge}
+                        </td>
+                        <td className="text-md font-bold p-3">
+                          {patient.statut}
+                        </td>
+                        <td className="p-3">
+                          <button
+                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            onClick={(e) => {
+                              setModalPatientRdv({
+                                patient: patient,
+                                show: true,
+                              });
+                            }}
+                          >
+                            Voir les RDV
+                          </button>
+                        </td>
+                        <td className="p-3">
+                          <button
+                            className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                            onClick={(e) => {
+                              setModalRdv({ patient: patient, show: true });
+                            }}
+                          >
+                            Nouveau RDV
+                          </button>
+                        </td>
+                        <td className="p-3">
+                          <button
+                            onClick={(e) => {
+                              setModalDeletePatient({
+                                show: true,
+                                patient: patient,
+                              });
+                            }}
+                          >
+                            <MdPersonRemoveAlt1 size={25} />
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <div className="flex mx-2">
+                  <p>
+                    Page {currentPagePatientList} / {totalPagesPatients}
+                  </p>
+                  {currentPagePatientList > 1 && (
+                    <button
+                      className="text-white bg-blue-800 p-2 rounded-md mx-2"
+                      onClick={(e) => {
+                        setCurrentPagePatientList(currentPagePatientList - 1);
+                      }}
+                    >
+                      Précédent
+                    </button>
+                  )}
+                  {totalPagesPatients != 1 &&
+                    currentPagePatientList < totalPagesPatients && (
                       <button
-                        className=" bg-green-500 p-2 px-4 rounded-full font-bold"
+                        className="text-white bg-blue-800 p-2 rounded-md mx-2"
                         onClick={(e) => {
-                          setModalPatientRdv({ patient: patient, show: true });
+                          setCurrentPagePatientList(currentPagePatientList + 1);
                         }}
                       >
-                        Voir les RDV
+                        Suivant
                       </button>
-                    </td>
-                    <td className="border-b-2 dark:border-dark-5">
-                      <button
-                        className=" bg-green-500 p-2 px-4 rounded-full font-bold"
-                        onClick={(e) => {
-                          setModalRdv({ patient: patient, show: true });
-                        }}
-                      >
-                        Nouveau RDV
-                      </button>
-                    </td>
-                    <td className="border-b-2 dark:border-dark-5">
-                      <button
-                        onClick={(e) => {
-                          setModal({ patient: patient, show: true });
-                        }}
-                        className=" bg-yellow-300 p-2 px-4 rounded-full font-bold"
-                      >
-                        Modifier
-                      </button>
-                    </td>
-                    <td className="border-b-2 dark:border-dark-5">
-                      <button
-                        className=" bg-red-500 p-2 px-4 rounded-full font-bold"
-                        onClick={(e) => {
-                          setModalDeletePatient({
-                            show: true,
-                            patient: patient,
-                          });
-                        }}
-                      >
-                        Supprimer
-                      </button>
-                    </td>
-                  </tr>
-                )
-            )}
-          </tbody>
-        </table>
-
-        <div className="flex mx-2">
-          <p>
-            Page {currentPagePatientList} / {totalPagesPatients}
-          </p>
-          {currentPagePatientList > 1 && (
-            <button
-              className="text-white bg-blue-800 p-2 rounded-md mx-2"
-              onClick={(e) => {
-                setCurrentPagePatientList(currentPagePatientList - 1);
-              }}
-            >
-              Précédent
-            </button>
-          )}
-          {totalPagesPatients != 1 &&
-            currentPagePatientList < totalPagesPatients && (
-              <button
-                className="text-white bg-blue-800 p-2 rounded-md mx-2"
-                onClick={(e) => {
-                  setCurrentPagePatientList(currentPagePatientList + 1);
-                }}
-              >
-                Suivant
-              </button>
-            )}
+                    )}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
