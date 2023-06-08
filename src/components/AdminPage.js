@@ -431,7 +431,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            <BiCalendar size={25} />
+                            <BiCalendar color="white" size={25} />
                           </button>
                         </td>
                         <td className="p-3">
@@ -441,7 +441,7 @@ const AdminPage = () => {
                               setModalRdv({ patient: patient, show: true });
                             }}
                           >
-                            <BiCalendarPlus size={25} />
+                            <BiCalendarPlus color="white" size={25} />
                           </button>
                         </td>
                         <td className="p-3">
