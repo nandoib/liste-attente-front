@@ -305,24 +305,27 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               validerPatient(patient);
                             }}
                           >
-                            <BiCheckCircle size={25} />
+                            <BiCheckCircle color="white" size={25} />
                           </button>
                         </td>
                         <td className="p-3">
                           <button
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
                             }}
                           >
-                            <BiEditAlt size={25} />
+                            <BiEditAlt color="white" size={25} />
                           </button>
                         </td>
                         <td className="p-3">
                           <button
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               setModalDeletePatient({
                                 show: true,
@@ -330,7 +333,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            <MdPersonRemoveAlt1 size={25} />
+                            <MdPersonRemoveAlt1 color="white" size={25} />
                           </button>
                         </td>
                       </tr>
@@ -423,7 +426,7 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
-                            className=" bg-blue-700 p-2  rounded-full font-bold"
+                            className=" bg-blue-700 p-2  rounded-full "
                             onClick={(e) => {
                               setModalPatientRdv({
                                 patient: patient,
@@ -436,7 +439,7 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
-                            className=" bg-blue-700 p-2  rounded-full font-bold"
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               setModalRdv({ patient: patient, show: true });
                             }}
@@ -446,15 +449,17 @@ const AdminPage = () => {
                         </td>
                         <td className="p-3">
                           <button
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
                             }}
                           >
-                            <BiEditAlt size={25} />
+                            <BiEditAlt color="white" size={25} />
                           </button>
                         </td>
                         <td className="p-3">
                           <button
+                            className=" bg-blue-700 p-2  rounded-full"
                             onClick={(e) => {
                               setModalDeletePatient({
                                 show: true,
@@ -462,7 +467,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            <MdPersonRemoveAlt1 size={25} />
+                            <MdPersonRemoveAlt1 color="white" size={25} />
                           </button>
                         </td>
                       </tr>
