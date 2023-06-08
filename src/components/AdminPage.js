@@ -264,7 +264,7 @@ const AdminPage = () => {
               <div class="overflow-hidden lg:p-10">
                 <table class="min-w-full text-left text-sm font-light table-auto">
                   <thead class="border-b  p-4 text-white bg-blue-700 rounded-md">
-                    <tr className="p-4 ">
+                    <tr className="p-4  ">
                       <th className="text-md font-bold p-2">#</th>
                       <th className="text-md font-bold p-2">Nom</th>
                       <th className="text-md font-bold p-2">Prenom</th>
@@ -281,25 +281,25 @@ const AdminPage = () => {
                   </thead>
                   <tbody>
                     {currentItemsWaitingList.map((patient, count) => (
-                      <tr className="text-md p-2">
-                        <td className="text-md font-bold p-2">{count + 1}</td>
-                        <td className="text-md font-bold p-2">{patient.nom}</td>
-                        <td className="text-md font-bold p-2">
+                      <tr className="text-md p-2 border-b transition duration-300 ease-in-out hover:bg-neutral-100">
+                        <td className="text-md font-bold p-3">{count + 1}</td>
+                        <td className="text-md font-bold p-3">{patient.nom}</td>
+                        <td className="text-md font-bold p-3">
                           {patient.prenom}
                         </td>
-                        <td className="text-md font-bold p-2">
+                        <td className="text-md font-bold p-3">
                           {patient.ville}
                         </td>
-                        <td className="text-md font-bold p-2">
+                        <td className="text-md font-bold p-3">
                           {returnAge(patient.dateNaissance)}
                         </td>
-                        <td className="text-md font-bold p-2">
+                        <td className="text-md font-bold p-3">
                           {patient.motifPriseEnCharge}
                         </td>
-                        <td className="text-md font-bold p-2">
+                        <td className="text-md font-bold p-3">
                           {patient.statut}
                         </td>
-                        <td>
+                        <td className="p-3">
                           <button
                             onClick={(e) => {
                               validerPatient(patient);
@@ -308,7 +308,7 @@ const AdminPage = () => {
                             <BiCheckCircle size={20} />
                           </button>
                         </td>
-                        <td>
+                        <td className="p-3">
                           <button
                             onClick={(e) => {
                               setModal({ patient: patient, show: true });
@@ -317,7 +317,7 @@ const AdminPage = () => {
                             <BiEditAlt size={20} />
                           </button>
                         </td>
-                        <td>
+                        <td className="p-3">
                           <button
                             onClick={(e) => {
                               setModalDeletePatient({
