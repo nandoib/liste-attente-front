@@ -230,7 +230,7 @@ const AdminPage = () => {
           onClick={(e) => {
             setNewPatientForm(!newPatientForm);
           }}
-          className="bg-blue-700 text-white w-4/12 rounded-md p-2 border mt-6 "
+          className="bg-blue-700 text-white w-4/12  lg:w-2/12 rounded-md p-2 border mt-6 "
         >
           Ajouter un patient
         </button>
@@ -244,6 +244,8 @@ const AdminPage = () => {
           </Modal>
         )}
 
+        <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
+
         <form>
           <label className="block font-bold m-2">Rechercher un patient</label>
           <input
@@ -252,11 +254,8 @@ const AdminPage = () => {
               handleSearch(e.target.value, "waitingList");
             }}
             type="text"
-            w
           ></input>
         </form>
-
-        <p className=" text-center text-2xl font-bold m-2">Liste d'attente</p>
 
         <div class="flex flex-col">
           <div class="overflow-x-auto ">
@@ -305,7 +304,7 @@ const AdminPage = () => {
                               validerPatient(patient);
                             }}
                           >
-                            <BiCheckCircle size={20} />
+                            <BiCheckCircle size={25} />
                           </button>
                         </td>
                         <td className="p-3">
@@ -314,7 +313,7 @@ const AdminPage = () => {
                               setModal({ patient: patient, show: true });
                             }}
                           >
-                            <BiEditAlt size={20} />
+                            <BiEditAlt size={25} />
                           </button>
                         </td>
                         <td className="p-3">
@@ -326,7 +325,7 @@ const AdminPage = () => {
                               });
                             }}
                           >
-                            <MdPersonRemoveAlt1 size={20} />
+                            <MdPersonRemoveAlt1 size={25} />
                           </button>
                         </td>
                       </tr>
